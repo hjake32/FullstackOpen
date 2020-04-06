@@ -1,39 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Bday = (props) => (
-  <strong>{props.bday == "October 13" ? "Happy Bday!" : ""}</strong>
-)
-
 const Hello = (props) => {
+  const bornYear = () => {
+    const yearNow = new Date().getFullYear()
+    return yearNow - props.age
+  }
   return (
     <div>
-      <p>Hello {props.name}, you are {props.age} years old. <Bday bday = {props.bday}/></p>
-    </div>
-  )
-}
-
-const Footer = () => {
-  return (
-    <div>
-      greeting app created by     
-      <a href="https://github.com/hjake32">Jake</a>
+      <p>
+        Hello {props.name}, you are {props.age} years old
+      </p>
+  <p>So you were probably born in {bornYear()}</p>
     </div>
   )
 }
 
 const App = () => {
+  const name = 'Peter'
   const age = 10
+
   return (
-    <>
+    <div>
       <h1>Greetings</h1>
-      <Hello name="George" age={age}  />
-      <Hello name= "Jake" age = {25+1} bday = "October 13" />
-      <Hello name = "Daisy"/>
-      <Hello />
-      <Footer />
-    </>
+      <Hello name="Maya" age={26 + 10} />
+      <Hello name={name} age={age} />
+    </div>
   )
-} 
+}
 
 ReactDOM.render(<App />, document.getElementById('root'))
