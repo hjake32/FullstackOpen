@@ -1,71 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './App'
 
-const Button = (props) => {
-  return (
-    <button onClick= {props.handleClick}>
-      {props.text}
-    </button>
-  )
-}
-
-const Stats = (props) => {
-  return (
-    <div>{props.text} {props.value}</div>
-  )
-}
-
-const App = () => {
-  // save clicks of each button to own state
-  const [good, setGood] = useState(0)
-  const [neutral, setNeutral] = useState(0)
-  const [bad, setBad] = useState(0)
-  const [all, setAll] = useState(0)
-
-  const goodClick = () => {
-    setGood(good + 1)
-    setAll(all + 1)
+const notes = [
+  {
+    id: 1,
+    content: 'HTML is easy',
+    date: '2019-05-30T17:30:31.098Z',
+    important: true
+  },
+  {
+    id: 2,
+    content: 'Browser can execute only Javascript',
+    date: '2019-05-30T18:39:34.091Z',
+    important: false
+  },
+  {
+    id: 3,
+    content: 'GET and POST are the most important methods of HTTP protocol',
+    date: '2019-05-30T19:20:14.298Z',
+    important: true
   }
-  const neutralClick = () => {
-    setNeutral(neutral + 1)
-    setAll(all + 1)
-  }
-  const badClick = () => {
-    setBad(bad + 1)
-    setAll(all + 1)
-  }
+]
 
-  return (
-     
-    <div>
-      <div>
-        <h1>give feedback</h1>
-        <Button handleClick= {goodClick} text = "good" />
-        <Button handleClick= {neutralClick} text = "neutral" />
-        <Button handleClick= {badClick} text = "bad" />
-      </div>
-      {all ? 
-      <div>
-        <h1>statistics</h1>
-        <table>
-          <tbody>
-            <tr>
-              <td><Stats text ="good" value = {good} /></td>
-            </tr>
-            <tr>
-              <td><Stats text ="bad" value = {bad} /></td>
-            </tr>
-              <td><Stats text ="all" value = {all} /></td>
-            <tr>
-              <td><Stats text= "average" value ={ good - bad / all} /></td>
-            </tr>
-          </tbody>
-        </table>
-      </div> : "No feedback given" }
-    </div>
-  )
-}
-
-ReactDOM.render(<App />, 
+ReactDOM.render(
+  <App notes={notes} />,
   document.getElementById('root')
 )
